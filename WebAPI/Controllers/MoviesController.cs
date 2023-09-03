@@ -34,6 +34,7 @@ namespace WebAPI.Controllers
         public IHttpActionResult Add([FromBody] Movies data)
         {
             MoviesService service = new MoviesService();
+            data.created_at = DateTime.Now;
             var response = service.Add(data);
             return Ok(response);
         }
@@ -43,6 +44,7 @@ namespace WebAPI.Controllers
         public IHttpActionResult Update([FromBody] Movies data)
         {
             MoviesService service = new MoviesService();
+            data.updated_at = DateTime.Now;
             var response = service.Update(data);
             return Ok(response);
         }
