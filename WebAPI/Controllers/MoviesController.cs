@@ -47,9 +47,13 @@ namespace WebAPI.Controllers
             return Ok(response);
         }
 
-        // DELETE api/values/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("api/movies/delete/{id}")]
+        public IHttpActionResult Delete(int id)
         {
+            MoviesService service = new MoviesService();
+            var response = service.Delete(id);
+            return Ok(response);
         }
     }
 }

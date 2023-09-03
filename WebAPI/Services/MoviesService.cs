@@ -89,7 +89,31 @@ namespace WebAPI.Services
 
                 _repo.Update(data);
 
-                return new ApiResponseViewModel() { status = true, statusCode = 200, message = "Movie has been created" };
+                return new ApiResponseViewModel() { status = true, statusCode = 200, message = "Movie has been updated" };
+            }
+            catch (Exception x)
+            {
+                return new ApiResponseViewModel() { status = false, statusCode = 400, message = x.Message };
+            }
+            finally
+            {
+                _ctx.Dispose();
+            }
+        }
+        public ApiResponseViewModel Delete(int id)
+        {
+            try
+            {
+                if (id < 1)
+                    return new ApiResponseViewModel() { status = false, statusCode = 400, message = "Movie id can't be less than 1" };
+
+                Movies Data = _repo.GetList().Where(f => f.id == id).FirstOrDefault();
+                if (Data == null)
+                    return new ApiResponseViewModel() { status = false, statusCode = 400, message = "Movie id is not exist" };
+
+                _repo.Delete(Data);
+
+                return new ApiResponseViewModel() { status = true, statusCode = 200, message = "Movie has been removed" };
             }
             catch (Exception x)
             {
