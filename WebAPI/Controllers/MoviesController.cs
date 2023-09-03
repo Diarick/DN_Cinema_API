@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("api/movies/add")]
+        [Route("api/movies/")]
         public IHttpActionResult Add([FromBody] Movies data)
         {
             MoviesService service = new MoviesService();
@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPatch]
-        [Route("api/movies/update")]
+        [Route("api/movies")]
         public IHttpActionResult Update([FromBody] Movies data)
         {
             MoviesService service = new MoviesService();
@@ -48,7 +48,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("api/movies/delete/{id}")]
+        [Route("api/movies/{id}")]
         public IHttpActionResult Delete(int id)
         {
             MoviesService service = new MoviesService();
